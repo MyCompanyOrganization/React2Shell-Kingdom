@@ -1,0 +1,22 @@
+# WARNING: This docker-compose file contains a known vulnerability (CVE-2025-55182)
+# For educational and security research purposes only.
+# DO NOT use in production or expose to untrusted networks.
+
+services:
+  react-cve-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-cve-poc
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+networks:
+  demo-network:
+    driver: bridge
+
